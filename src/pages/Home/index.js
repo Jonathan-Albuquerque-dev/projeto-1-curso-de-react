@@ -7,22 +7,32 @@ import "./style.css";
 
 export default function Home() {
   const [filmes, setFilmes] = useState([]);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     async function loadFilmes() {
-      const response = await api.get("discover/movie", {
+      const response = await api.get("/movie/now_playing", {
         params: {
           api_key: "85ce3425b5f20922bf81d5bb096cb42a",
-          languege: "pt-BR",
+          language: "pt-BR",
           page: 1,
         },
       });
 
       setFilmes(response.data.results.slice(0, 10));
+      setLoad(false);
     }
 
     loadFilmes();
   }, []);
+
+  if (load) {
+    return (
+      <div className="load">
+        <h2>Carregando filme...</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="container-main">
@@ -35,7 +45,7 @@ export default function Home() {
                 src={`http://image.tmdb.org/t/p/original/${filme.poster_path}`}
                 alt={filme.title}
               />
-              <Link to={`/filme/${filme.id}`}>Detalhes</Link>
+              <Link to={`/movies/${filme.id}`}>Informações do Filme</Link>
             </article>
           );
         })}
