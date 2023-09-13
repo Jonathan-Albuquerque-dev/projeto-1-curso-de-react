@@ -15,11 +15,16 @@ header {
   font-weight: bold;
 }
 
-.favoritos {
+.menu {
   text-decoration: none;
   color: #000;
   font-size: 1.1em;
   background-color: #fff;
   padding: 10px;
   border-radius: 5px;
+}
+
+.container-menu {
+  display: flex;
+  gap: 20px;
 }

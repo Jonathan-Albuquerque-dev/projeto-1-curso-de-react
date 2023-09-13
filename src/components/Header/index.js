@@ -4,12 +4,19 @@ import "./style.css";
 export default function Header() {
   return (
     <header>
-      <Link className="Logo" to="/">
-        Full Filmes
-      </Link>
-      <Link className="favoritos" to="/favoristo">
-        Favoritos
-      </Link>
+      <div>
+        <Link className="Logo" to="/">
+          Full Filmes
+        </Link>
+      </div>
+      <div className="container-menu">
+        <Link className="menu" to="/favoristo">
+          Favoritos
+        </Link>
+        <Link className="menu" to="/categorias">
+          Categoria
+        </Link>
+      </div>
     </header>
   );
 }
