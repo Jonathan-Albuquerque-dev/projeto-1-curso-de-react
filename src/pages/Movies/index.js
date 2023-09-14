@@ -28,7 +28,7 @@ export default function Movies() {
     }
 
     loadFilme();
-  }, []);
+  }, [id]);
 
   if (load) {
     return (
@@ -48,6 +48,18 @@ export default function Movies() {
         />
         <h3>Sinopse:</h3>
         <p>{filme.overview}</p>
+        <div className="container-btn">
+          <a href="#" className="btn green">
+            Favoritos
+          </a>
+          <a
+            href={`https://www.youtube.com/results?search_query=trailer+${filme.title}`}
+            className="btn red"
+            target="_black"
+          >
+            Trailer
+          </a>
+        </div>
       </article>
     </div>
   );

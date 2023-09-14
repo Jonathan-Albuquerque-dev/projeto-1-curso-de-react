@@ -11,16 +11,21 @@ export default function Home() {
 
   useEffect(() => {
     async function loadFilmes() {
-      const response = await api.get("/movie/now_playing", {
-        params: {
-          api_key: "85ce3425b5f20922bf81d5bb096cb42a",
-          language: "pt-BR",
-          page: 1,
-        },
-      });
-
-      setFilmes(response.data.results.slice(0, 10));
-      setLoad(false);
+      await api
+        .get("/movie/now_playing", {
+          params: {
+            api_key: "85ce3425b5f20922bf81d5bb096cb42a",
+            language: "pt-BR",
+            page: 1,
+          },
+        })
+        .then((response) => {
+          setFilmes(response.data.results.slice(0, 10));
+          setLoad(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     loadFilmes();
