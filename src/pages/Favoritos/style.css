@@ -1,0 +1,27 @@
+.container {
+  max-width: 980px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.container-filmes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px;
+  padding: 30px 10px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgb(175, 174, 174);
+}
+
+.div-img {
+  width: 100%;
+}
+img {
+  width: 100%;
+  height: 100%;
+}

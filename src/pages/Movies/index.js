@@ -18,7 +18,6 @@ export default function Movies() {
           },
         })
         .then((response) => {
-          console.log(response.data);
           setFilme(response.data);
           setLoad(false);
         })
@@ -29,6 +28,21 @@ export default function Movies() {
 
     loadFilme();
   }, [id]);
+
+  function addFavoritos() {
+    const listFilmes = localStorage.getItem("@favoritos");
+    let listConvertida = JSON.parse(listFilmes) || [];
+
+    const verificacao = listConvertida.some((item) => item.id === filme.id);
+
+    if (verificacao) {
+      alert("Filme ja adicionado aos favoritos");
+      return;
+    }
+
+    listConvertida.push(filme);
+    localStorage.setItem("@favoritos", JSON.stringify(listConvertida));
+  }
 
   if (load) {
     return (
@@ -49,9 +63,9 @@ export default function Movies() {
         <h3>Sinopse:</h3>
         <p>{filme.overview}</p>
         <div className="container-btn">
-          <a href="#" className="btn green">
+          <button className="btn green" onClick={addFavoritos}>
             Favoritos
-          </a>
+          </button>
           <a
             href={`https://www.youtube.com/results?search_query=trailer+${filme.title}`}
             className="btn red"

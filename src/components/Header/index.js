@@ -10,7 +10,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="container-menu">
-        <Link className="menu" to="/favoristo">
+        <Link className="menu" to="/favoritos">
           Favoritos
         </Link>
         <Link className="menu" to="/categorias">
