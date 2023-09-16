@@ -3,41 +3,38 @@ import "./style.css";
 
 export default function Favoritos() {
   const [filmes, setFilmes] = useState([]);
-  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     const filmesFavoritos = localStorage.getItem("@favoritos");
-    if (filmesFavoritos) {
-      setFilmes(JSON.parse(filmesFavoritos));
-      setLoad(true);
-    }
-
-    //setFilmes(JSON.parse(filmesFavoritos));
+    setFilmes(JSON.parse(filmesFavoritos) || []);
   }, []);
 
-  if (load === false) {
-    return (
-      <div>
-        <h1>Nenhum Filme Adicionado</h1>
-      </div>
-    );
+  function delMovie(item) {
+    let filtro = filmes.filter((filme) => {
+      return item !== filme.id;
+    });
+
+    setFilmes(filtro);
+
+    localStorage.setItem("@favoritos", JSON.stringify(filtro));
   }
 
   return (
     <div className="container">
+      <h1>Meus Filmes</h1>
       {filmes.map((item) => {
         return (
-          <div className="container-filmes">
-            <h1>{item.title}</h1>
-
-            <div className="div-img">
-              <img
-                src={`http://image.tmdb.org/t/p/original/${item.backdrop_path}`}
-                alt={item.title}
-              />
+          <div key={item.id} className="container-filmes">
+            <div className="container-h1">
+              <h1>{item.title}</h1>
             </div>
-            <div>
-              <p>{item.overview}</p>
+            <div id="container-btn-link">
+              <a
+                href={`https://www.youtube.com/results?search_query=trailer+${item.title}`}
+              >
+                Trailer
+              </a>
+              <button onClick={() => delMovie(item.id)}>Excluir</button>
             </div>
           </div>
         );
