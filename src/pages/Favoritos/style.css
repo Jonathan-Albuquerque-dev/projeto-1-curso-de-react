@@ -1,21 +1,19 @@
 .container {
-  max-width: 980px;
+  max-width: 900px;
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  margin-bottom: 50px;
-  margin-top: 20px;
+  margin: 20px 10px 40px 10px;
 }
 
 .container-filmes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 300px;
+  max-width: 800px;
   padding: 30px 10px;
   margin: 0 auto;
   border-radius: 10px;
-  background-color: rgb(175, 174, 174);
 }
 
 .div-img {
@@ -24,4 +22,9 @@
 img {
   width: 100%;
   height: 100%;
+}
+
+p {
+  text-align: justify;
+  padding: 20px 0;
 }

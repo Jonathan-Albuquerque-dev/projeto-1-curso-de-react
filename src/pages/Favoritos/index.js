@@ -3,11 +3,25 @@ import "./style.css";
 
 export default function Favoritos() {
   const [filmes, setFilmes] = useState([]);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     const filmesFavoritos = localStorage.getItem("@favoritos");
-    setFilmes(JSON.parse(filmesFavoritos));
+    if (filmesFavoritos) {
+      setFilmes(JSON.parse(filmesFavoritos));
+      setLoad(true);
+    }
+
+    //setFilmes(JSON.parse(filmesFavoritos));
   }, []);
+
+  if (load === false) {
+    return (
+      <div>
+        <h1>Nenhum Filme Adicionado</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
